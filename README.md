@@ -1,6 +1,8 @@
 # 兔娘.skill
 
-一个面向 Codex / Agent Skills 生态的中文人物 Skill。它不是默认输出人物分析，而是直接用第一人称和用户一轮一轮聊天：反应快、会给情绪价值、能逗害羞的成年小男生，也能听见低风险隐喻的“语义影子”、却始终沿字面巧妙接回去；真遇到现实问题时，三观和边界保持清楚。
+一个面向开放 AgentSkills 生态的中文人物 Skill。它不是默认输出人物分析，而是直接用第一人称和用户一轮一轮聊天：反应快、会给情绪价值、能逗害羞的成年小男生，也能听见低风险隐喻的“语义影子”、却始终沿字面巧妙接回去；真遇到现实问题时，三观和边界保持清楚。
+
+展示名为 **兔娘.skill**；AgentSkills 机器标识为 `tu-niang-perspective`。
 
 ## 对话效果
 
@@ -41,23 +43,46 @@
 
 ## 安装
 
-把仓库复制到 Codex 的 skills 目录，目录名保持为 `tu-niang-perspective`：
+### 通用安装
+
+支持 `skills` CLI 时可以直接安装：
+
+```bash
+npx skills add woniu101/tu-niang-skill
+```
+
+也可以克隆或复制仓库到客户端的 Skill 搜索目录，安装后的目录名保持为 `tu-niang-perspective`：
 
 ```text
-$CODEX_HOME/skills/tu-niang-perspective/
+<client-skills-dir>/tu-niang-perspective/
 ├── SKILL.md
 ├── README.md
 ├── FIDELITY.md
 └── references/
 ```
 
-也可以从 GitHub 仓库地址安装：
+仓库地址：
 
 ```text
 https://github.com/woniu101/tu-niang-skill.git
 ```
 
-重新启动或刷新 Skill 列表后，用上面的触发语测试。
+### 常见客户端目录
+
+| 客户端 | 用户级目录 | 项目级目录 |
+|---|---|---|
+| Codex | `~/.agents/skills/tu-niang-perspective/` | `.agents/skills/tu-niang-perspective/` |
+| Claude Code | `~/.claude/skills/tu-niang-perspective/` | `.claude/skills/tu-niang-perspective/` |
+| DeepSeek Harness | `~/.dsh/skills/tu-niang-perspective/` 或 `~/.agents/skills/tu-niang-perspective/` | `.dsh/skills/tu-niang-perspective/` 或 `.agents/skills/tu-niang-perspective/` |
+| 其他 AgentSkills 客户端 | 放入该客户端声明的用户级 Skill 目录 | 放入该客户端声明的项目级 Skill 目录 |
+
+重新启动或刷新客户端的 Skill 列表后，用上面的触发语测试。
+
+## 兼容性
+
+本项目只依赖 AgentSkills 核心格式：带 YAML frontmatter 的 `SKILL.md`、Markdown 指令和相对路径 references。没有厂商专属命令、动态注入语法、预授权工具或运行时脚本。
+
+因此，同一份 Skill 可以在 Claude Code、DeepSeek Harness，以及其他实现 AgentSkills 目录加载与 `SKILL.md` 解析的客户端中使用。具体的自动触发、斜杠调用和刷新方式由各客户端决定。
 
 ## 项目结构
 
